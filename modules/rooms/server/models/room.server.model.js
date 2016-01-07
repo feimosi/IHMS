@@ -15,7 +15,8 @@ var RoomSchema = new Schema({
     },
     floor: {
         type: Schema.ObjectId,
-        ref: 'Floor'
+        ref: 'Floor',
+        required: true
     }
 });
 
