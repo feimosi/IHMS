@@ -1,0 +1,45 @@
+<section class="list-rooms" ng-controller="RoomsManagementController as roomsManagement">
+  <div class="page-header">
+    <h1>Rooms management</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <button class="btn btn-success add-room-btn" ui-sref="rooms.create">Add room</button>
+      <aside>
+        <div class="panel panel-info filters-panel">
+          <div class="panel-heading">
+            <h3 class="panel-title">Filters</h3>
+          </div>
+          <div class="panel-body">
+            <form>
+              <div class="form-group">
+                <label for="room-number">Room number:</label>
+                <input type="text" name="room-number" id="room-number" class="form-control"
+                       ng-model="roomsManagement.filters.roomNumber">
+              </div>
+              <div class="form-group">
+                <label for="floor-number">Floor number:</label>
+                <input type="text" name="room-number" id="floor-number" class="form-control"
+                       ng-model="roomsManagement.filters.floorNumber">
+              </div>
+            </form>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <div class="col-md-10">
+      <div class="list-group">
+        <div class="room" ng-repeat="room in roomsManagement.rooms | roomsFilter:roomsManagement.filters" >
+          <div class="list-group-item" ui-sref="rooms.view({roomId: room._id})">
+            <h4 class="list-group-item-heading">Room #<span ng-bind="room.number"></span></h4>
+            <p class="list-group-item-text">Floor: <span ng-bind="room.floor.number"></span></p>
+            <button class="btn btn-primary edit-room-btn">Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="roomsManagement.rooms.$resolved && !roomsManagement.rooms.length">
+    No rooms yet, why don't you <a ui-sref="rooms.create">create one</a>?
+  </div>
+</section>
