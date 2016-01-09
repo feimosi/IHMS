@@ -52,7 +52,7 @@ exports.delete = function (req, res) {
 };
 
 exports.list = function (req, res) {
-    Room.find().sort('number').exec(function (err, rooms) {
+    Room.find().populate('floor').sort('number').exec(function (err, rooms) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
@@ -69,7 +69,7 @@ exports.roomByID = function (req, res, next, id) {
         });
     }
 
-    Room.findById(id).exec(function (err, room) {
+    Room.findById(id).populate('floor').exec(function (err, room) {
         if (err) {
             return next(err);
         } else if (!room) {
