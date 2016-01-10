@@ -67,3 +67,8 @@ a:hover .header-profile-image {
 .filters-panel input{
   width: 100%;
 }
+
+.room-image-thumb {
+  min-height: 150px;
+  max-height: 300px;
+}

@@ -18,6 +18,15 @@
                   ng-model="roomsManagement.room.floor" ng-options="floor.label for floor in roomsManagement.floors">
           </select>
         </div>
+        <div class="form-group text-center" ng-show="roomsManagement.room.imageURL">
+          <img ng-src="{{ roomsManagement.room.imageURL }}" ng-attr-alt="Room #{{ roomsManagement.room.number }}"
+               class="img-thumbnail room-image-thumb">
+        </div>
+        <div class="text-center form-group">
+          <span class="btn btn-default btn-file">
+              Select Image <input type="file" nv-file-select uploader="roomsManagement.fileUploader">
+          </span>
+        </div>
         <div class="form-group">
           <button type="submit" class="btn btn-default" ng-disabled="roomForm.$invalid">Create</button>
         </div>

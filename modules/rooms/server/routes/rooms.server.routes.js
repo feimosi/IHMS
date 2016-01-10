@@ -13,5 +13,8 @@ module.exports = function (app) {
         .put(rooms.update)
         .delete(rooms.delete);
 
+    app.route('/api/upload/rooms/picture')
+        .post(rooms.changePicture);
+
     app.param('roomId', rooms.roomByID);
 };

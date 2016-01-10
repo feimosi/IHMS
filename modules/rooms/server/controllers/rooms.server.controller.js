@@ -3,6 +3,8 @@
 var path = require('path'),
     mongoose = require('mongoose'),
     Room = mongoose.model('Room'),
+    multer = require('multer'),
+    config = require(path.resolve('./config/config')),
     errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 exports.create = function (req, res) {
@@ -79,5 +81,29 @@ exports.roomByID = function (req, res, next, id) {
         }
         req.room = room;
         next();
+    });
+};
+
+exports.changePicture = function (req, res) {
+    var upload = multer(config.uploads.roomUpload).single('image');
+    upload(req, res, function (uploadError) {
+        if (uploadError) {
+            console.log(uploadError);
+            return res.status(400).send({
+                message: 'Error occurred while uploading profile picture'
+            });
+        }
+
+        Room.findById(req.body.roomId).exec(function (err, room) {
+            room.imageURL = config.uploads.roomUpload.dest + req.file.filename;
+            room.save(function (saveError) {
+                if (saveError) {
+                    return res.status(400).send({
+                        message: errorHandler.getErrorMessage(saveError)
+                    });
+                }
+                res.json(room);
+            });
+        });
     });
 };

@@ -35,6 +35,12 @@ module.exports = {
       limits: {
         fileSize: 1*1024*1024 // Max file size in bytes (1 MB)
       }
+    },
+    roomUpload: {
+      dest: './modules/rooms/client/img/uploads/',
+      limits: {
+        fileSize: 10*1024*1024
+      }
     }
   }
 };

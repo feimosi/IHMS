@@ -17,6 +17,9 @@ var RoomSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'Floor',
         required: true
+    },
+    imageURL: {
+        type: String
     }
 });
 
