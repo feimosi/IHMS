@@ -1,3 +1,3 @@
 'use strict';
 
-ApplicationConfiguration.registerModule('rooms');
+ApplicationConfiguration.registerModule('rooms', ['room-features']);

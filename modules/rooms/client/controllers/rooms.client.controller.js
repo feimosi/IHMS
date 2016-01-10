@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('rooms').controller('RoomsManagementController', function ($scope, $location, $state, Rooms) {
+angular.module('rooms').controller('RoomsManagementController', function ($scope, $location, $state, Rooms, RoomFeatureTypes) {
     var vm = this;
     vm.rooms = [];
     vm.filters = {};
+    vm.roomFeatureTypes = RoomFeatureTypes.query();
     vm.error = null;
 
     vm.updateRoomsList = function () {

@@ -22,6 +22,9 @@
                 <input type="text" name="room-number" id="floor-number" class="form-control"
                        ng-model="roomsManagement.filters.floorNumber">
               </div>
+              <div class="form-group" ng-repeat="roomFeatureType in roomsManagement.roomFeatureTypes">
+                <label for="floor-number" ng-bind="roomFeatureType.name"></label>
+              </div>
             </form>
           </div>
         </div>
