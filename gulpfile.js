@@ -52,8 +52,8 @@ gulp.task('watch', function () {
 
   // Add watch rules
   gulp.watch(defaultAssets.server.views).on('change', plugins.livereload.changed);
-  gulp.watch(defaultAssets.server.allJS, ['eslint']).on('change', plugins.livereload.changed);
-  gulp.watch(defaultAssets.client.js, ['eslint']).on('change', plugins.livereload.changed);
+  gulp.watch(defaultAssets.server.allJS).on('change', plugins.livereload.changed);
+  gulp.watch(defaultAssets.client.js).on('change', plugins.livereload.changed);
   gulp.watch(defaultAssets.client.css, ['csslint']).on('change', plugins.livereload.changed);
   gulp.watch(defaultAssets.client.sass, ['sass', 'csslint']).on('change', plugins.livereload.changed);
   gulp.watch(defaultAssets.client.less, ['less', 'csslint']).on('change', plugins.livereload.changed);
@@ -269,7 +269,7 @@ gulp.task('test:e2e', function (done) {
 
 // Run the project in development mode
 gulp.task('default', function (done) {
-  runSequence('env:dev', 'lint', ['nodemon', 'watch'], done);
+  runSequence('env:dev', ['nodemon', 'watch'], done);
 });
 
 // Run the project in debug mode
