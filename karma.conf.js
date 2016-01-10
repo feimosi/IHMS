@@ -17,7 +17,7 @@ if (testConfig.coverage) {
 module.exports = function (karmaConfig) {
   karmaConfig.set({
     // Frameworks to use
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'sinon', 'should'],
 
     preprocessors: {
       'modules/*/client/views/**/*.html': ['ng-html2js'],
