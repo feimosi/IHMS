@@ -29,6 +29,7 @@ exports.update = function (req, res) {
 
     room.number = req.body.number;
     room.available = req.body.available;
+    room.floor = req.body.floor;
 
     room.save(function (err) {
         if (err) {

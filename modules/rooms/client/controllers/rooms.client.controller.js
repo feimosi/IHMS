@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rooms').controller('RoomsManagementController', function ($scope, $location, Rooms) {
+angular.module('rooms').controller('RoomsManagementController', function ($scope, $location, $state, Rooms) {
     var vm = this;
     vm.rooms = [];
     vm.filters = {};
@@ -8,6 +8,11 @@ angular.module('rooms').controller('RoomsManagementController', function ($scope
 
     vm.updateRoomsList = function () {
         vm.rooms = Rooms.query();
+    };
+
+    vm.openEditView = function ($event, room) {
+        $event.stopPropagation();
+        $state.go('rooms.edit', { roomId: room._id });
     };
 
     vm.updateRoomsList();

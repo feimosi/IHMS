@@ -38,7 +38,7 @@
               <div class="col-md-6">
                 <h4 class="list-group-item-heading">Room #<span ng-bind="room.number"></span></h4>
                 <p class="list-group-item-text">Floor: <span ng-bind="room.floor.number"></span></p>
-                <button class="btn btn-primary edit-room-btn">Edit</button>
+                <button class="btn btn-primary edit-room-btn" ng-click="roomsManagement.openEditView($event, room)">Edit</button>
               </div>
             </div>
           </div>
