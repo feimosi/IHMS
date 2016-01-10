@@ -15,7 +15,8 @@
         </div>
         <div class="form-group" show-errors>
           <select name="floor" id="floor" class="form-control"
-                  ng-model="roomsManagement.room.floor" ng-options="floor.label for floor in roomsManagement.floors">
+                  ng-model="roomsManagement.room.floor"
+                  ng-options="floor.label for floor in roomsManagement.floors track by floor._id">
           </select>
         </div>
         <div class="form-group text-center" ng-show="roomsManagement.room.imageURL">
