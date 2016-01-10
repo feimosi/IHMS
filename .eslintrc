@@ -5,7 +5,9 @@
     "mocha": true
   },
   "globals": {
-    "inject": true
+    "inject": true,
+    "sinon": true,
+    "ApplicationConfiguration": true
   },
   "extends": [
     "angular",
@@ -17,7 +19,9 @@
     }],
     "indent": [2, 4],
     "comma-dangle": [2, "never"],
-    "strict": [1, "function"],
+    "strict": 0,
+    "one-var": 0,
+    "quote-props": 0,
     "space-before-function-paren": [2, {
       "anonymous": "always",
       "named": "never"
@@ -28,9 +32,10 @@
     "id-length": [2, {
       "exceptions": ["i", "j", "x", "y", "$", "_"]
     }],
-    "wrap-iife": [2, "outside"]
-  },
-  "ecmaFeatures": {
-    "modules": false
+    "wrap-iife": [2, "outside"],
+    "no-param-reassign": 0,
+    "no-console": 0,
+    "angular/log": 0,
+    "object-shorthand": 0
   }
 }
