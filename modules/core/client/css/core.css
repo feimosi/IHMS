@@ -59,9 +59,13 @@ a:hover .header-profile-image {
 }
 
 .room {
-  width: 31%;
+  width: 48%;
   float: left;
   margin: .5% 1%;
+}
+
+.room-image {
+  max-width: 100%;
 }
 
 .filters-panel input{
