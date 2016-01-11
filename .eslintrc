@@ -18,6 +18,7 @@
       "properties": "always"
     }],
     "indent": [2, 4],
+    "max-len": [1, 120, 4],
     "comma-dangle": [2, "never"],
     "strict": 0,
     "one-var": 0,
