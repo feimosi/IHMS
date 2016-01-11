@@ -40,7 +40,14 @@
               </div>
               <div class="col-md-6">
                 <h4 class="list-group-item-heading">Room #<span ng-bind="room.number"></span></h4>
-                <p class="list-group-item-text">Floor: <span ng-bind="room.floor.number"></span></p>
+                <div class="feature">
+                  <strong class="list-group-item-text">Floor: </strong>
+                  <span ng-bind="room.floor.number"></span>
+                </div>
+                <div class="feature" ng-repeat="feature in room.features" >
+                  <strong ng-bind="feature.type.name"></strong>
+                  <span ng-bind="feature.value"></span>
+                </div>
                 <button class="btn btn-primary edit-room-btn" ng-click="roomsManagement.openEditView($event, room)">Edit</button>
               </div>
             </div>
