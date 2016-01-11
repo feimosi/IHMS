@@ -15,6 +15,6 @@ var RoomFeatureSchema = new Schema({
     note: {
         type: String
     }
-});
+}, { _id: false });
 
 mongoose.model('RoomFeature', RoomFeatureSchema);

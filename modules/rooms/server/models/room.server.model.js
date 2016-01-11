@@ -1,7 +1,8 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    RoomFeatureSchema = require('../../../room-features/server/models/room-feature.server.model');
 
 var RoomSchema = new Schema({
     number: {
@@ -20,7 +21,8 @@ var RoomSchema = new Schema({
     },
     imageURL: {
         type: String
-    }
+    },
+    features: [RoomFeatureSchema]
 });
 
 mongoose.model('Room', RoomSchema);
