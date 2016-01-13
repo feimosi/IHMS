@@ -14,10 +14,16 @@
           </div>
         </div>
         <div class="form-group" show-errors>
+          <label for="number">Floor</label>
           <select name="floor" id="floor" class="form-control"
                   ng-model="roomsManagement.room.floor"
                   ng-options="floor.label for floor in roomsManagement.floors track by floor._id">
           </select>
+        </div>
+        <div class="form-group" show-errors ng-repeat="feature in roomsManagement.room.features">
+          <label ng-attr-for="feature-{{ feature.type.name  }}" ng-bind="feature.type.name + ':'"></label>
+          <input type="text" name="feature-{{ feature.type.name  }}" id="feature-{{ feature.type.name }}"
+                 class="form-control" ng-model="feature.value">
         </div>
         <div class="form-group text-center" ng-show="roomsManagement.room.imageURL">
           <img ng-src="{{ roomsManagement.room.imageURL }}" ng-attr-alt="Room #{{ roomsManagement.room.number }}"
