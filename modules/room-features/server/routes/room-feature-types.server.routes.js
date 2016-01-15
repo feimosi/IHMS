@@ -7,4 +7,9 @@ module.exports = function (app) {
     app.route('/api/room-feature-types').all(roomsPolicy.isAllowed)
         .get(roomFeatureTypes.list)
         .post(roomFeatureTypes.create);
+
+    app.route('/api/room-feature-types/:featureTypeId').all(roomsPolicy.isAllowed)
+        .get(roomFeatureTypes.read);
+
+    app.param('featureTypeId', roomFeatureTypes.featureTypeById);
 };

@@ -10,17 +10,26 @@ exports.invokeRolesPolicies = function () {
         allows: [{
             resources: '/api/room-feature-types',
             permissions: '*'
+        }, {
+            resources: '/api/room-feature-types/:featureTypeId',
+            permissions: '*'
         }]
     }, {
         roles: ['user'],
         allows: [{
             resources: '/api/room-feature-types',
             permissions: ['get', 'post']
+        }, {
+            resources: '/api/room-feature-types/:featureTypeId',
+            permissions: ['get']
         }]
     }, {
         roles: ['guest'],
         allows: [{
             resources: '/api/room-feature-types',
+            permissions: ['get']
+        }, {
+            resources: '/api/room-feature-types/:featureTypeId',
             permissions: ['get']
         }]
     }]);
