@@ -1,7 +1,20 @@
 <section ng-controller="ViewRoomController as roomsManager">
-  <div class="page-header">
+  <div class="page-header text-center">
     <h1>Room #<span ng-bind="roomsManager.room.number"></span></h1>
-    <p class="list-group-item-text">Floor: <span ng-bind="roomsManager.room.floor.number"></span></p>
-    <img ng-src="{{ roomsManager.room.imageURL }}" class="img-thumbnail room-image">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <p class="row" class="room-floor">
+          <span class="col-md-6" >Floor: </span>
+          <span class="col-md-6" ng-bind="roomsManager.room.floor.number"></span>
+        </p>
+      </li>
+      <li class="list-group-item" ng-repeat="feature in roomsManager.room.features">
+        <p class="row feature-{{ feature.type.name }}" >
+          <span class="col-md-6" ng-bind="feature.type.name + ':'"></span>
+          <span class="col-md-6" ng-bind="feature.value"></span>
+        </p>
+      </li>
+    </ul>
+    <img ng-src="{{ roomsManager.room.imageURL }}" class="img-thumbnail room-image-thumb">
   </div>
 </section>

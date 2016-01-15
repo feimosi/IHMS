@@ -3,7 +3,7 @@
     <h1>New Room</h1>
   </div>
   <div class="col-md-12">
-    <form name="roomForm" class="form-horizontal" ng-submit="roomsManagement.create()" novalidate>
+    <form name="roomsManagement.roomForm" class="form-horizontal" ng-submit="roomsManagement.create()" novalidate>
       <fieldset>
         <div class="form-group" show-errors>
           <label for="number">Number</label>
@@ -14,10 +14,18 @@
           </div>
         </div>
         <div class="form-group" show-errors>
+          <label for="number">Floor</label>
           <select name="floor" id="floor" class="form-control"
                   ng-model="roomsManagement.room.floor"
                   ng-options="floor.label for floor in roomsManagement.floors track by floor._id">
+            <option value="" label="Please select a floor" ng-hide="roomsManagement.roomForm.floor.$dirty"></option>
           </select>
+        </div>
+        <div class="form-group" show-errors ng-repeat="feature in roomsManagement.availableFeatures ">
+          <label ng-attr-for="feature-{{ feature.name }}" ng-bind="feature.name + ':'"></label>
+          <input type="text" name="feature-{{ feature.name }}" id="feature-{{ feature.name }}"
+                 ng-init="roomsManagement.room.features[feature.name].type = feature"
+                 class="form-control" ng-model="roomsManagement.room.features[feature.name].value">
         </div>
         <div class="form-group text-center" ng-show="roomsManagement.room.imageURL">
           <img ng-src="{{ roomsManagement.room.imageURL }}" ng-attr-alt="Room #{{ roomsManagement.room.number }}"

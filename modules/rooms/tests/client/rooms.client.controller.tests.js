@@ -1,21 +1,24 @@
 describe('RoomsManagement controller', function () {
     var $controller;
     var controller;
+    var $state;
     var Rooms;
-    var Floors;
+    var RoomFeatureTypes;
 
     beforeEach(module(ApplicationConfiguration.applicationModuleName));
     beforeEach(module('rooms'));
 
-    beforeEach(inject(function (_$controller_, _$rootScope_, _Rooms_, _Floors_) {
+    beforeEach(inject(function (_$controller_, _$rootScope_, _$state_, _Rooms_, _RoomFeatureTypes_) {
         $controller = _$controller_;
         Rooms = _Rooms_;
-        Floors = _Floors_;
+        RoomFeatureTypes = _RoomFeatureTypes_;
+        $state = _$state_;
 
         controller = $controller('RoomsManagementController', {
             $scope: _$rootScope_.$new(),
+            $state: $state,
             Rooms: Rooms,
-            Floors: Floors
+            RoomFeatureTypes: RoomFeatureTypes
         });
     }));
 
@@ -33,5 +36,21 @@ describe('RoomsManagement controller', function () {
         controller.updateRoomsList();
 
         controller.rooms.should.containDeep([roomA, roomB]);
+    });
+
+    it('should open edit view', function () {
+        var roomA = new Rooms({
+            _id: 'AAA',
+            number: 1,
+            floor: ''
+        });
+        var stopPropagationSpy = sinon.spy();
+        var $event = { stopPropagation: stopPropagationSpy };
+        var stateGoStub = sinon.stub($state, 'go');
+
+        controller.openEditView($event, roomA);
+
+        sinon.assert.calledOnce(stopPropagationSpy);
+        sinon.assert.calledWith(stateGoStub, 'rooms.edit', { roomId: roomA._id });
     });
 });

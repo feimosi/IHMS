@@ -1,15 +1,16 @@
 'use strict';
 
-angular.module('rooms').controller('CreateRoomController', function ($state, $window, $timeout,
-                                                                     Rooms, Floors, FileUploader) {
+angular.module('rooms').controller('CreateRoomController', function ($scope, $state, $window, $timeout,
+                                                                     Rooms, Floors, RoomFeatureTypes, FileUploader) {
     var vm = this;
     vm.room = {};
+    vm.availableFeatures = RoomFeatureTypes.query();
     vm.floors = Floors.query(function (floors) {
         floors.forEach(function (floor) {
             floor.label = 'Floor ' + floor.number;
         });
-        vm.room.floor = floors[0];
     });
+
     vm.fileUploader = new FileUploader({
         url: '/api/upload/rooms/picture/',
         alias: 'image'
@@ -42,10 +43,32 @@ angular.module('rooms').controller('CreateRoomController', function ($state, $wi
         });
     };
 
+    $scope.$watch(function () {
+        return vm.room.number;
+    }, function () {
+        if (vm.roomForm.floor.$pristine) {
+            // Is at least 3-digit number
+            if (/\d{3,}/.test(vm.room.number)) {
+                var potentialFloor = +('' + vm.room.number).slice(0, -2);
+                if (angular.isNumber(potentialFloor)) {
+                    vm.room.floor = vm.floors[potentialFloor];
+                }
+            }
+        }
+    });
+
     vm.create = function () {
+        var roomFeatures = [];
+        for (var roomFeature in vm.room.features) {
+            if (vm.room.features.hasOwnProperty(roomFeature)) {
+                roomFeatures.push(vm.room.features[roomFeature]);
+            }
+        }
+
         var room = new Rooms({
             number: vm.room.number,
-            floor: vm.room.floor._id
+            floor: vm.room.floor,
+            features: roomFeatures
         });
 
         room.$save(function (response) {

@@ -198,6 +198,19 @@ gulp.task('karma', function (done) {
     }));
 });
 
+// Karma test runner task
+gulp.task('karma:coverage', function (done) {
+  plugins.env.set({
+    COVERAGE: true
+  });
+  return gulp.src([])
+      .pipe(plugins.karma({
+        configFile: 'karma.conf.js',
+        action: 'run',
+        singleRun: true
+      }));
+});
+
 // Drops the MongoDB database, used in e2e testing
 gulp.task('dropdb', function (done) {
   // Use mongoose configuration

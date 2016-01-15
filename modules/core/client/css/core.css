@@ -66,11 +66,19 @@ a:hover .header-profile-image {
 
 .room-image {
   max-width: 100%;
-  max-height: 100px;
+  max-height: 150px;
 }
 
-.filters-panel input{
+.filters-panel > input {
   width: 100%;
+}
+
+label {
+  font-weight: 500;
+}
+
+.filter-name {
+  font-weight: 700;
 }
 
 .room-image-thumb {
@@ -95,4 +103,8 @@ a:hover .header-profile-image {
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .active > a {
   background: transparent;
   box-shadow: none;
+}
+
+.feature {
+  margin: 4px 0;
 }
