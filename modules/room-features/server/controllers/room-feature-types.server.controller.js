@@ -1,6 +1,7 @@
 'use strict';
 
 var path = require('path'),
+    async = require('async'),
     mongoose = require('mongoose'),
     Room = mongoose.model('Room'),
     RoomFeatureType = mongoose.model('RoomFeatureType'),
@@ -20,13 +21,37 @@ exports.create = function (req, res) {
 };
 
 exports.list = function (req, res) {
-    RoomFeatureType.find().exec(function (err, rooms) {
+    RoomFeatureType.find().exec(function (err, roomFeatures) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
         }
-        res.json(rooms);
+
+        async.mapSeries(roomFeatures, function (key, next) {
+            Room.aggregate().unwind('features')
+                .match({ 'features.type.name': key.name })
+                .group({ _id: '$features.value' })
+                .exec(function (error, result) {
+                    if (error) {
+                        return res.status(400).send({
+                            message: errorHandler.getErrorMessage(error)
+                        });
+                    }
+                    var response = key.toObject();
+                    response.values = result.map(function (value) {
+                        return value._id;
+                    });
+                    next(error, response);
+                });
+        }, function (error, result) {
+            if (error) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(error)
+                });
+            }
+            res.json(result);
+        });
     });
 };
 
