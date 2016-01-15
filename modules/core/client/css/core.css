@@ -69,8 +69,16 @@ a:hover .header-profile-image {
   max-height: 150px;
 }
 
-.filters-panel input{
+.filters-panel > input {
   width: 100%;
+}
+
+label {
+  font-weight: 500;
+}
+
+.filter-name {
+  font-weight: 700;
 }
 
 .room-image-thumb {
