@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('rooms').controller('CreateRoomController', function ($scope, $state, $window, $timeout,
-                                                                     Rooms, Floors, RoomFeatureTypes, FileUploader) {
+                                                                     Rooms, Floors, RoomFeatureTypes, FileUploader,
+                                                                     Notification) {
     var vm = this;
     vm.room = {};
     vm.availableFeatures = RoomFeatureTypes.query();
@@ -75,6 +76,7 @@ angular.module('rooms').controller('CreateRoomController', function ($scope, $st
                 vm.fileUploader.uploadAll();
             } else {
                 $scope.$close(response);
+                Notification.success('Success! New room has been added.');
             }
         }, function (errorResponse) {
             vm.error = errorResponse.data.message;

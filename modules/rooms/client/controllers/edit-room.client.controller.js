@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('rooms').controller('EditRoomController', function ($scope, $state, $stateParams, $window, $timeout,
-                                                                     Rooms, Floors, FileUploader) {
+                                                                     Rooms, Floors, FileUploader, Notification) {
     var vm = this;
     vm.room = Rooms.get({ roomId: $stateParams.roomId });
     vm.floors = Floors.query(function (floors) {
@@ -46,6 +46,7 @@ angular.module('rooms').controller('EditRoomController', function ($scope, $stat
                 vm.fileUploader.uploadAll();
             } else {
                 $scope.$close(response);
+                Notification.success('<p class="notification-success">Success! The room details have been changed.</p>');
             }
         }, function (errorResponse) {
             vm.error = errorResponse.data.message;

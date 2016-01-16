@@ -112,3 +112,7 @@ label {
 .validation-warning {
   color: #ff2300;
 }
+
+.ui-notification.success {
+  width: 500px;
+}
