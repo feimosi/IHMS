@@ -108,3 +108,7 @@ label {
 .feature {
   margin: 4px 0;
 }
+
+.validation-warning {
+  color: #ff2300;
+}

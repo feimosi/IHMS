@@ -8,9 +8,10 @@
         <div class="form-group" show-errors>
           <label for="number">Number</label>
           <input name="number" type="number" ng-model="roomsManagement.room.number" id="number"
-                 class="form-control" placeholder="Number" required autofocus>
-          <div ng-messages="roomsManagement.roomForm.number.$invalid" role="alert">
-            <p class="help-block error-text" ng-message="required">Room number is required.</p>
+                 class="form-control" placeholder="Number" required autofocus ng-pattern="/^\d+/">
+          <div ng-messages="roomsManagement.roomForm.number.$error" role="alert">
+            <p class="validation-warning" ng-message="required">Room number is required.</p>
+            <p class="validation-warning" ng-message="pattern">Room cannot be negative</p>
           </div>
         </div>
         <div class="form-group" show-errors>
