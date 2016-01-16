@@ -9,7 +9,7 @@
           <label for="number">Number</label>
           <input name="number" type="number" ng-model="roomsManagement.room.number" id="number"
                  class="form-control" placeholder="Number" required autofocus>
-          <div ng-messages="roomForm.number.$error" role="alert">
+          <div ng-messages="roomsManagement.roomForm.number.$invalid" role="alert">
             <p class="help-block error-text" ng-message="required">Room number is required.</p>
           </div>
         </div>
@@ -17,10 +17,11 @@
           <label for="number">Floor</label>
           <select name="floor" id="floor" class="form-control"
                   ng-model="roomsManagement.room.floor"
-                  ng-options="floor.label for floor in roomsManagement.floors track by floor._id">
+                  ng-options="floor.label for floor in roomsManagement.floors track by floor._id" required>
             <option value="" label="Please select a floor" ng-hide="roomsManagement.roomForm.floor.$dirty"></option>
           </select>
         </div>
+
         <div class="row">
           <div class="col-md-6" ng-repeat="feature in roomsManagement.availableFeatures">
             <div show-errors class="form-group">
@@ -31,6 +32,7 @@
             </div>
           </div>
         </div>
+
         <div class="form-group text-center" ng-show="roomsManagement.room.imageURL">
           <img ng-src="{{ roomsManagement.room.imageURL }}" ng-attr-alt="Room #{{ roomsManagement.room.number }}"
                class="img-thumbnail room-image-thumb">
@@ -49,7 +51,7 @@
   <div class="modal-footer">
     <div class="form-group">
       <button type="button" class="btn btn-success" ng-click="roomsManagement.create()"
-              ng-disabled="roomForm.$invalid">Create</button>
+              ng-disabled="roomsManagement.roomForm.$invalid">Create</button>
       <button type="button" class="btn btn-danger" ng-click="roomsManagement.dismiss()">Cancel</button>
     </div>
   </div>
