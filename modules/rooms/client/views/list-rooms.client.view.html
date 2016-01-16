@@ -40,7 +40,7 @@
     </div>
     <div class="col-md-10">
       <div class="list-group">
-        <div class="room" ng-repeat="room in roomsManagement.rooms | roomsFilter:roomsManagement.filters" >
+        <div class="room" ng-repeat="room in (roomsManagement.filteredRooms = (roomsManagement.rooms | roomsFilter:roomsManagement.filters))">
           <div class="list-group-item" ui-sref="rooms.view({roomId: room._id})">
             <div class="row">
               <div class="col-md-6">
@@ -60,6 +60,9 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="no-rooms-info" ng-if="roomsManagement.rooms.$resolved && !roomsManagement.filteredRooms.length">
+          <div class="alert alert-warning" role="alert">Warning! No rooms have been found. Please review your filters</div>
         </div>
       </div>
     </div>
