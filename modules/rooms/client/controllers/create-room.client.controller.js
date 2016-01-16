@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('rooms').controller('CreateRoomController', function ($scope, $state, $window, $timeout,
-                                                                     Rooms, Floors, RoomFeatureTypes, FileUploader) {
+                                                                     Rooms, Floors, RoomFeatureTypes, FileUploader,
+                                                                     Notification) {
     var vm = this;
     vm.room = {};
     vm.availableFeatures = RoomFeatureTypes.query();
@@ -38,9 +39,7 @@ angular.module('rooms').controller('CreateRoomController', function ($scope, $st
     };
 
     vm.fileUploader.onSuccessItem = function (fileItem, response) {
-        $state.go('rooms.view', {
-            roomId: response._id
-        });
+        $scope.$close(response);
     };
 
     $scope.$watch(function () {
@@ -73,9 +72,18 @@ angular.module('rooms').controller('CreateRoomController', function ($scope, $st
 
         room.$save(function (response) {
             vm.room._id = response._id;
-            vm.fileUploader.uploadAll();
+            if (vm.fileUploader.queue.length > 0) {
+                vm.fileUploader.uploadAll();
+            } else {
+                $scope.$close(response);
+                Notification.success('Success! New room has been added.');
+            }
         }, function (errorResponse) {
             vm.error = errorResponse.data.message;
         });
+    };
+
+    vm.dismiss = function () {
+        $scope.$dismiss();
     };
 });
