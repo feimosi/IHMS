@@ -11,11 +11,21 @@ angular.module('rooms').config(function ($stateProvider) {
             url: '',
             templateUrl: 'modules/rooms/client/views/list-rooms.client.view.html'
         })
-        .state('rooms.create', {
+        .state('rooms.list.create', {
             url: '/create',
-            templateUrl: 'modules/rooms/client/views/create-room.client.view.html',
             data: {
                 roles: ['user', 'admin']
+            },
+            onEnter: function ($document, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'modules/rooms/client/views/create-room.client.view.html'
+                }).result.then(function (result) {
+                    $state.go('rooms.view', {
+                        roomId: result._id
+                    });
+                }).catch(function () {
+                    $state.go('rooms.list');
+                });
             }
         })
         .state('rooms.view', {
