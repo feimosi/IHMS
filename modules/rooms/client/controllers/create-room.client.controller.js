@@ -39,9 +39,6 @@ angular.module('rooms').controller('CreateRoomController', function ($scope, $st
 
     vm.fileUploader.onSuccessItem = function (fileItem, response) {
         $scope.$close(response);
-        $state.go('rooms.view', {
-            roomId: response._id
-        });
     };
 
     $scope.$watch(function () {
