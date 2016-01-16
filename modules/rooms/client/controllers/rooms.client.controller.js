@@ -16,5 +16,9 @@ angular.module('rooms').controller('RoomsManagementController', function ($scope
         $state.go('rooms.list.edit', { roomId: room._id });
     };
 
+    vm.isNotNull = function (item) {
+        return item !== null;
+    };
+
     vm.updateRoomsList();
 });

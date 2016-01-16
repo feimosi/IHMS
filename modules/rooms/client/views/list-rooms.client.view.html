@@ -25,7 +25,7 @@
               <div class="form-group" ng-repeat="roomFeatureType in roomsManagement.roomFeatureTypes">
                 <label class="filter-name" ng-bind="roomFeatureType.name"></label>
                 <div>
-                  <div ng-repeat="value in roomFeatureType.values">
+                  <div ng-repeat="value in roomFeatureType.values | filter:roomsManagement.isNotNull">
                     <label for="{{ value }}">
                       <input type="checkbox" id="{{ value }}" value="{{ value }}">
                       <span ng-bind="value" ></span>
