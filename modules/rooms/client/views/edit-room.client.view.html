@@ -1,15 +1,15 @@
 <section ng-controller="EditRoomController as roomsManagement">
-  <div class="page-header">
+  <div class="modal-header">
     <h1>Edit Room</h1>
   </div>
-  <div class="col-md-12">
-    <form name="roomForm" class="form-horizontal" ng-submit="roomsManagement.update()" novalidate>
+  <div class="modal-body">
+    <form name="roomsManagement.roomForm">
       <fieldset>
         <div class="form-group" show-errors>
           <label for="number">Number</label>
           <input name="number" type="number" ng-model="roomsManagement.room.number" id="number"
                  class="form-control" placeholder="Number" required>
-          <div ng-messages="roomForm.number.$error" role="alert">
+          <div ng-messages="roomsManagement.roomForm.number.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Room number is required.</p>
           </div>
         </div>
@@ -20,11 +20,17 @@
                   ng-options="floor.label for floor in roomsManagement.floors track by floor._id">
           </select>
         </div>
-        <div class="form-group" show-errors ng-repeat="feature in roomsManagement.room.features">
-          <label ng-attr-for="feature-{{ feature.type.name  }}" ng-bind="feature.type.name + ':'"></label>
-          <input type="text" name="feature-{{ feature.type.name  }}" id="feature-{{ feature.type.name }}"
-                 class="form-control" ng-model="feature.value">
+
+        <div class="row">
+          <div class="col-md-6" ng-repeat="feature in roomsManagement.room.features">
+            <div show-errors class="form-group">
+              <label ng-attr-for="feature-{{ feature.type.name  }}" ng-bind="feature.type.name + ':'"></label>
+              <input type="text" name="feature-{{ feature.type.name  }}" id="feature-{{ feature.type.name }}"
+                     class="form-control" ng-model="feature.value">
+            </div>
+          </div>
         </div>
+
         <div class="form-group text-center" ng-show="roomsManagement.room.imageURL">
           <img ng-src="{{ roomsManagement.room.imageURL }}" ng-attr-alt="Room #{{ roomsManagement.room.number }}"
                class="img-thumbnail room-image-thumb">
@@ -34,13 +40,17 @@
               Select Image <input type="file" nv-file-select uploader="roomsManagement.fileUploader">
           </span>
         </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-default" ng-disabled="roomForm.$invalid">Save</button>
-        </div>
         <div ng-show="roomsManagement.error" class="text-danger">
           <strong ng-bind="roomsManagement.error"></strong>
         </div>
       </fieldset>
     </form>
+  </div>
+  <div class="modal-footer">
+    <div class="form-group">
+      <button type="button" class="btn btn-success" ng-click="roomsManagement.update()"
+              ng-disabled="roomsManagement.roomForm.$invalid">Save</button>
+      <button type="button" class="btn btn-danger" ng-click="roomsManagement.dismiss()">Cancel</button>
+    </div>
   </div>
 </section>

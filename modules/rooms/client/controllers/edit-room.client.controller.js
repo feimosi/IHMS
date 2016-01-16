@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rooms').controller('EditRoomController', function ($state, $stateParams, $window, $timeout,
+angular.module('rooms').controller('EditRoomController', function ($scope, $state, $stateParams, $window, $timeout,
                                                                      Rooms, Floors, FileUploader) {
     var vm = this;
     vm.room = Rooms.get({ roomId: $stateParams.roomId });
@@ -36,17 +36,23 @@ angular.module('rooms').controller('EditRoomController', function ($state, $stat
     };
 
     vm.fileUploader.onSuccessItem = function (fileItem, response) {
-        $state.go('rooms.view', {
-            roomId: response._id
-        });
+        $scope.$close(response);
     };
 
     vm.update = function () {
         vm.room.imageURL = null;
-        vm.room.$update(function () {
-            vm.fileUploader.uploadAll();
+        vm.room.$update(function (response) {
+            if (vm.fileUploader.queue.length > 0) {
+                vm.fileUploader.uploadAll();
+            } else {
+                $scope.$close(response);
+            }
         }, function (errorResponse) {
             vm.error = errorResponse.data.message;
         });
+    };
+
+    vm.dismiss = function () {
+        $scope.$dismiss();
     };
 });

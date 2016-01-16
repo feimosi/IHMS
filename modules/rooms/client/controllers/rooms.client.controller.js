@@ -13,7 +13,7 @@ angular.module('rooms').controller('RoomsManagementController', function ($scope
 
     vm.openEditView = function ($event, room) {
         $event.stopPropagation();
-        $state.go('rooms.edit', { roomId: room._id });
+        $state.go('rooms.list.edit', { roomId: room._id });
     };
 
     vm.updateRoomsList();
