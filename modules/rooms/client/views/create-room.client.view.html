@@ -1,5 +1,5 @@
 <section ng-controller="CreateRoomController as roomsManagement">
-  <div class="modal-header">
+  <div class="modal-header text-center">
     <h1>New Room</h1>
   </div>
   <div class="modal-body">
@@ -49,7 +49,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <div class="form-group">
+    <div class="form-group text-center">
       <button type="button" class="btn btn-success" ng-click="roomsManagement.create()"
               ng-disabled="roomsManagement.roomForm.$invalid">Create</button>
       <button type="button" class="btn btn-danger" ng-click="roomsManagement.dismiss()">Cancel</button>
