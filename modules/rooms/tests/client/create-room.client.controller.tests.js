@@ -53,10 +53,14 @@ describe('CreateRoom controller', function () {
     });
 
     describe('usage', function () {
-        it('should create a room', function () {
+        it('should create a room without image', function () {
             var RoomsStub = sinon.stub();
             var FileUploaderStub = sinon.stub();
             var FileUploaderUploadAllStub = sinon.stub();
+            var modalScopeExtensions = {
+                $dismiss: angular.noop,
+                $close: angular.noop
+            };
             RoomsStub.returns({
                 $save: function (success) {
                     success({
@@ -65,10 +69,11 @@ describe('CreateRoom controller', function () {
                 }
             });
             FileUploaderStub.returns({
-                uploadAll: FileUploaderUploadAllStub
+                uploadAll: FileUploaderUploadAllStub,
+                queue: []
             });
             controller = $controller('CreateRoomController', {
-                $scope: $rootScope.$new(),
+                $scope: angular.extend($rootScope.$new(), modalScopeExtensions),
                 $state: $state,
                 Rooms: RoomsStub,
                 Floors: Floors,
@@ -86,7 +91,7 @@ describe('CreateRoom controller', function () {
 
             sinon.assert.calledWith(RoomsStub, room);
             sinon.assert.calledOnce(FileUploaderStub);
-            sinon.assert.calledOnce(FileUploaderUploadAllStub);
+            sinon.assert.notCalled(FileUploaderUploadAllStub);
             controller.room._id.should.be.a.String();
         });
     });

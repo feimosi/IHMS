@@ -51,6 +51,6 @@ describe('RoomsManagement controller', function () {
         controller.openEditView($event, roomA);
 
         sinon.assert.calledOnce(stopPropagationSpy);
-        sinon.assert.calledWith(stateGoStub, 'rooms.edit', { roomId: roomA._id });
+        sinon.assert.calledWith(stateGoStub, 'rooms.list.edit', { roomId: roomA._id });
     });
 });
