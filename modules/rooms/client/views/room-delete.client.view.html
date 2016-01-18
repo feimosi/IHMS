@@ -1,0 +1,39 @@
+<section ng-controller="RoomDeleteController as roomDelete">
+  <div class="modal-header text-center">
+    <h1>Delete room #<span ng-bind="roomDelete.room.number"></span>?</h1>
+  </div>
+
+  <div class="modal-body">
+    <p class="text-center">Room with the following details will be deleted from the system. Are you sure?</p>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <ul class="unstyled-list">
+          <li>
+            <p class="row" class="room-floor">
+              <strong>Floor: </strong>
+              <span ng-bind="roomDelete.room.floor.number"></span>
+            </p>
+          </li>
+          <li ng-repeat="feature in roomDelete.room.features">
+            <p class="row feature-{{ feature.type.name }}" >
+              <strong ng-bind="feature.type.name + ':'"></strong>
+              <span ng-bind="feature.value"></span>
+            </p>
+          </li>
+        </ul>
+        <img ng-src="{{ roomDelete.room.imageURL }}" class="room-image"
+             ng-if="roomDelete.room.imageURL">
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <div class="form-group text-center room-delete-buttons">
+      <button type="button" class="btn btn-success" ng-click="roomDelete.delete()"
+              ng-disabled="roomDelete.roomForm.$invalid">Confirm</button>
+      <button type="button" class="btn btn-danger" ng-click="roomDelete.dismiss()">Cancel</button>
+    </div>
+  </div>
+</section>

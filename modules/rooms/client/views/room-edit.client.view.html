@@ -47,10 +47,11 @@
     </form>
   </div>
   <div class="modal-footer">
-    <div class="form-group text-center">
+    <div class="form-group text-center room-edit-buttons">
       <button type="button" class="btn btn-success" ng-click="roomEdit.update()"
               ng-disabled="roomEdit.roomForm.$invalid">Save</button>
       <button type="button" class="btn btn-danger" ng-click="roomEdit.dismiss()">Cancel</button>
+      <button type="button" class="btn btn-link room-delete-button" ng-click="roomEdit.delete()">Delete room</button>
     </div>
   </div>
 </section>
