@@ -130,3 +130,7 @@ label {
 .room-delete-button, .room-delete-button:hover, .room-delete-button:focus {
   color: #ff2300;
 }
+
+.unstyled-list {
+  list-style: none;
+}

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('rooms').controller('RoomEditController', function ($scope, $state, $stateParams, $window, $timeout,
-                                                                   Rooms, Floors, FileUploader, Notification) {
+                                                                   $uibModal, Rooms, Floors, FileUploader, Notification) {
     var vm = this;
     vm.room = Rooms.get({ roomId: $stateParams.roomId });
     vm.floors = Floors.query(function (floors) {
@@ -58,11 +58,12 @@ angular.module('rooms').controller('RoomEditController', function ($scope, $stat
     };
 
     vm.delete = function () {
-        vm.room.$delete().then(function () {
+        $uibModal.open({
+            templateUrl: 'modules/rooms/client/views/room-delete.client.view.html'
+        }).result.then(function () {
             $scope.$close({
                 deleted: true
             });
-            Notification.success('<p class="notification-success">Success! The room have been deleted.</p>');
         });
     };
 });
