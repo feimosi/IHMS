@@ -23,7 +23,7 @@ describe('CreateRoom controller', function () {
             var floors = [];
             var floorsQueryStub = sinon.stub(Floors, 'query').returns(floors);
 
-            controller = $controller('CreateRoomController', {
+            controller = $controller('RoomCreateController', {
                 $scope: $rootScope.$new(),
                 $state: $state,
                 Rooms: Rooms,
@@ -39,7 +39,7 @@ describe('CreateRoom controller', function () {
             var availableFeatures = [];
             var roomFeaturesTypesQueryStub = sinon.stub(RoomFeatureTypes, 'query').returns(availableFeatures);
 
-            controller = $controller('CreateRoomController', {
+            controller = $controller('RoomCreateController', {
                 $scope: $rootScope.$new(),
                 $state: $state,
                 Rooms: Rooms,
@@ -72,7 +72,7 @@ describe('CreateRoom controller', function () {
                 uploadAll: FileUploaderUploadAllStub,
                 queue: []
             });
-            controller = $controller('CreateRoomController', {
+            controller = $controller('RoomCreateController', {
                 $scope: angular.extend($rootScope.$new(), modalScopeExtensions),
                 $state: $state,
                 Rooms: RoomsStub,

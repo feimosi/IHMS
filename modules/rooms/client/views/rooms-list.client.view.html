@@ -1,4 +1,4 @@
-<section class="list-rooms" ng-controller="RoomsManagementController as roomsManagement">
+<section class="list-rooms" ng-controller="RoomsListController as roomsList">
   <div class="page-header">
     <h1>Rooms management</h1>
   </div>
@@ -15,17 +15,17 @@
               <div class="form-group">
                 <label class="filter-name" for="room-number">Room number:</label>
                 <input type="text" name="room-number" id="room-number" class="form-control"
-                       ng-model="roomsManagement.filters.roomNumber">
+                       ng-model="roomsList.filters.roomNumber">
               </div>
               <div class="form-group">
                 <label class="filter-name" for="floor-number">Floor number:</label>
                 <input type="text" name="room-number" id="floor-number" class="form-control"
-                       ng-model="roomsManagement.filters.floorNumber">
+                       ng-model="roomsList.filters.floorNumber">
               </div>
-              <div class="form-group" ng-repeat="roomFeatureType in roomsManagement.roomFeatureTypes">
+              <div class="form-group" ng-repeat="roomFeatureType in roomsList.roomFeatureTypes">
                 <label class="filter-name" ng-bind="roomFeatureType.name"></label>
                 <div>
-                  <div ng-repeat="value in roomFeatureType.values | filter:roomsManagement.isNotNull">
+                  <div ng-repeat="value in roomFeatureType.values | filter:roomsList.isNotNull">
                     <label for="{{ value }}">
                       <input type="checkbox" id="{{ value }}" value="{{ value }}">
                       <span ng-bind="value" ></span>
@@ -40,7 +40,7 @@
     </div>
     <div class="col-md-10">
       <div class="list-group">
-        <div class="room" ng-repeat="room in (roomsManagement.filteredRooms = (roomsManagement.rooms | roomsFilter:roomsManagement.filters))">
+        <div class="room" ng-repeat="room in (roomsList.filteredRooms = (roomsList.rooms | roomsFilter:roomsList.filters))">
           <div class="list-group-item" ui-sref="rooms.view({roomId: room._id})">
             <div class="row">
               <div class="col-md-6">
@@ -56,18 +56,18 @@
                   <strong ng-bind="feature.type.name"></strong>
                   <span ng-bind="feature.value"></span>
                 </div>
-                <button class="btn btn-primary edit-room-btn" ng-click="roomsManagement.openEditView($event, room)">Edit</button>
+                <button class="btn btn-primary edit-room-btn" ng-click="roomsList.openEditView($event, room)">Edit</button>
               </div>
             </div>
           </div>
         </div>
-        <div class="no-rooms-info" ng-if="roomsManagement.rooms.$resolved && !roomsManagement.filteredRooms.length">
+        <div class="no-rooms-info" ng-if="roomsList.rooms.$resolved && !roomsList.filteredRooms.length">
           <div class="alert alert-warning" role="alert">Warning! No rooms have been found. Please review your filters</div>
         </div>
       </div>
     </div>
   </div>
-  <div class="alert alert-warning text-center" ng-if="roomsManagement.rooms.$resolved && !roomsManagement.rooms.length">
+  <div class="alert alert-warning text-center" ng-if="roomsList.rooms.$resolved && !roomsList.rooms.length">
     No rooms yet, why don't you <a ui-sref="rooms.create">create one</a>?
   </div>
 </section>

@@ -1,0 +1,59 @@
+<section ng-controller="RoomCreateController as roomCreate">
+  <div class="modal-header text-center">
+    <h1>New Room</h1>
+  </div>
+  <div class="modal-body">
+    <form name="roomCreate.roomForm">
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="number">Number</label>
+          <input name="number" type="number" ng-model="roomCreate.room.number" id="number"
+                 class="form-control" placeholder="Number" required autofocus ng-pattern="/^\d+/">
+          <div ng-messages="roomCreate.roomForm.number.$error" role="alert">
+            <p class="validation-warning" ng-message="required">Room number is required.</p>
+            <p class="validation-warning" ng-message="pattern">Room cannot be negative</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="number">Floor</label>
+          <select name="floor" id="floor" class="form-control"
+                  ng-model="roomCreate.room.floor"
+                  ng-options="floor.label for floor in roomCreate.floors track by floor._id" required>
+            <option value="" label="Please select a floor" ng-hide="roomCreate.roomForm.floor.$dirty"></option>
+          </select>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6" ng-repeat="feature in roomCreate.availableFeatures">
+            <div show-errors class="form-group">
+              <label ng-attr-for="feature-{{ feature.name }}" ng-bind="feature.name + ':'"></label>
+              <input type="text" name="feature-{{ feature.name }}" id="feature-{{ feature.name }}"
+                     ng-init="roomCreate.room.features[feature.name].type = feature"
+                     class="form-control" ng-model="roomCreate.room.features[feature.name].value">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group text-center" ng-show="roomCreate.room.imageURL">
+          <img ng-src="{{ roomCreate.room.imageURL }}" ng-attr-alt="Room #{{ roomCreate.room.number }}"
+               class="img-thumbnail room-image-thumb">
+        </div>
+        <div class="text-center form-group">
+          <span class="btn btn-default btn-file">
+              Select Image <input type="file" nv-file-select uploader="roomCreate.fileUploader">
+          </span>
+        </div>
+        <div ng-show="roomCreate.error" class="text-danger">
+          <strong ng-bind="roomCreate.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="form-group text-center">
+      <button type="button" class="btn btn-success" ng-click="roomCreate.create()"
+              ng-disabled="roomCreate.roomForm.$invalid">Create</button>
+      <button type="button" class="btn btn-danger" ng-click="roomCreate.dismiss()">Cancel</button>
+    </div>
+  </div>
+</section>

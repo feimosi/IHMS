@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rooms').controller('RoomsManagementController', function ($scope, $state, Rooms, RoomFeatureTypes) {
+angular.module('rooms').controller('RoomsListController', function ($scope, $state, Rooms, RoomFeatureTypes) {
     var vm = this;
     vm.rooms = [];
     vm.filters = {};

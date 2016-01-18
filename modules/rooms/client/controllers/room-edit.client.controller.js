@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('rooms').controller('EditRoomController', function ($scope, $state, $stateParams, $window, $timeout,
-                                                                     Rooms, Floors, FileUploader, Notification) {
+angular.module('rooms').controller('RoomEditController', function ($scope, $state, $stateParams, $window, $timeout,
+                                                                   Rooms, Floors, FileUploader, Notification) {
     var vm = this;
     vm.room = Rooms.get({ roomId: $stateParams.roomId });
     vm.floors = Floors.query(function (floors) {

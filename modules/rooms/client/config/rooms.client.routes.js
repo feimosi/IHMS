@@ -9,7 +9,7 @@ angular.module('rooms').config(function ($stateProvider) {
         })
         .state('rooms.list', {
             url: '',
-            templateUrl: 'modules/rooms/client/views/list-rooms.client.view.html'
+            templateUrl: 'modules/rooms/client/views/rooms-list.client.view.html'
         })
         .state('rooms.list.create', {
             url: '/create',
@@ -18,7 +18,7 @@ angular.module('rooms').config(function ($stateProvider) {
             },
             onEnter: function ($document, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'modules/rooms/client/views/create-room.client.view.html'
+                    templateUrl: 'modules/rooms/client/views/room-create.client.view.html'
                 }).result.then(function (result) {
                     $state.go('rooms.view', {
                         roomId: result._id
@@ -30,7 +30,7 @@ angular.module('rooms').config(function ($stateProvider) {
         })
         .state('rooms.view', {
             url: '/:roomId',
-            templateUrl: 'modules/rooms/client/views/view-room.client.view.html'
+            templateUrl: 'modules/rooms/client/views/room-view.client.view.html'
         })
         .state('rooms.list.edit', {
             url: '/:roomId/edit',
@@ -39,7 +39,7 @@ angular.module('rooms').config(function ($stateProvider) {
             },
             onEnter: function ($document, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'modules/rooms/client/views/edit-room.client.view.html'
+                    templateUrl: 'modules/rooms/client/views/room-edit.client.view.html'
                 }).result.then(function (result) {
                     $state.go('rooms.view', {
                         roomId: result._id

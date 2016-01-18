@@ -1,4 +1,4 @@
-describe('RoomsManagement controller', function () {
+describe('RoomsList controller', function () {
     var $controller;
     var controller;
     var $state;
@@ -14,7 +14,7 @@ describe('RoomsManagement controller', function () {
         RoomFeatureTypes = _RoomFeatureTypes_;
         $state = _$state_;
 
-        controller = $controller('RoomsManagementController', {
+        controller = $controller('RoomsListController', {
             $scope: _$rootScope_.$new(),
             $state: $state,
             Rooms: Rooms,

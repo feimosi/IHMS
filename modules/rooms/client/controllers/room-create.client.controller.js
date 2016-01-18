@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rooms').controller('CreateRoomController', function ($scope, $state, $window, $timeout,
+angular.module('rooms').controller('RoomCreateController', function ($scope, $state, $window, $timeout,
                                                                      Rooms, Floors, RoomFeatureTypes, FileUploader,
                                                                      Notification) {
     var vm = this;
