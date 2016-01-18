@@ -56,4 +56,13 @@ angular.module('rooms').controller('RoomEditController', function ($scope, $stat
     vm.dismiss = function () {
         $scope.$dismiss();
     };
+
+    vm.delete = function () {
+        vm.room.$delete().then(function () {
+            $scope.$close({
+                deleted: true
+            });
+            Notification.success('<p class="notification-success">Success! The room have been deleted.</p>');
+        });
+    };
 });

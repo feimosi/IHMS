@@ -116,3 +116,17 @@ label {
 .ui-notification.success {
   width: 500px;
 }
+
+.room-edit-buttons {
+  position: relative;
+}
+
+.room-delete-button {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+}
+
+.room-delete-button, .room-delete-button:hover, .room-delete-button:focus {
+  color: #ff2300;
+}

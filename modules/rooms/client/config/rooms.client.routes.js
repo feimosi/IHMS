@@ -41,9 +41,15 @@ angular.module('rooms').config(function ($stateProvider) {
                 $uibModal.open({
                     templateUrl: 'modules/rooms/client/views/room-edit.client.view.html'
                 }).result.then(function (result) {
-                    $state.go('rooms.view', {
-                        roomId: result._id
-                    });
+                    if (result.deleted) {
+                        $state.go('rooms.list', {}, {
+                            reload: true
+                        });
+                    } else {
+                        $state.go('rooms.view', {
+                            roomId: result._id
+                        });
+                    }
                 }).catch(function () {
                     $state.go('rooms.list');
                 });
