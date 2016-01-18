@@ -1,9 +1,19 @@
 'use strict';
+/**
+ * @module rooms/models/Room
+ */
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     RoomFeatureSchema = require('../../../room-features/server/models/room-feature.server.model');
 
+/**
+ * @property {int} number
+ * @property {boolean} available
+ * @property {Floor} floor
+ * @property {String} imageUrl
+ * @property {Array} features
+ */
 var RoomSchema = new Schema({
     number: {
         type: Number,

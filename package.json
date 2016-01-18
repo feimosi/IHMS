@@ -17,6 +17,7 @@
   "scripts": {
     "start": "gulp",
     "test": "gulp test",
+    "docs": "jsdoc --configure .jsdoc.json --verbose",
     "postinstall": "bower install --config.interactive=false"
   },
   "dependencies": {

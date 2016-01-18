@@ -1,4 +1,7 @@
 'use strict';
+/**
+ * @module rooms/controller/rooms-controller
+ */
 
 var path = require('path'),
     mongoose = require('mongoose'),
@@ -7,6 +10,11 @@ var path = require('path'),
     config = require(path.resolve('./config/config')),
     errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
+/**
+ * Create and persist a Room object
+ * @param req {Request}
+ * @param res {Response}
+ */
 exports.create = function (req, res) {
     var room = new Room(req.body);
 
@@ -20,10 +28,20 @@ exports.create = function (req, res) {
     });
 };
 
+/**
+ * Get a specific Room object
+ * @param req {Request}
+ * @param res {Response}
+ */
 exports.read = function (req, res) {
     res.json(req.room);
 };
 
+/**
+ * Update Room object
+ * @param req {Request}
+ * @param res {Response}
+ */
 exports.update = function (req, res) {
     var room = req.room;
 
@@ -44,6 +62,11 @@ exports.update = function (req, res) {
     });
 };
 
+/**
+ * Delete a Room object
+ * @param req {Request}
+ * @param res {Response}
+ */
 exports.delete = function (req, res) {
     var room = req.room;
 
@@ -57,6 +80,11 @@ exports.delete = function (req, res) {
     });
 };
 
+/**
+ * Retrieve a list of all Room objects
+ * @param req {Request}
+ * @param res {Response}
+ */
 exports.list = function (req, res) {
     Room.find().populate('floor').sort('number').exec(function (err, rooms) {
         if (err) {
@@ -68,6 +96,11 @@ exports.list = function (req, res) {
     });
 };
 
+/**
+ * Get Room by ID
+ * @param req {Request}
+ * @param res {Response}
+ */
 exports.roomByID = function (req, res, next, id) {
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).send({
@@ -88,6 +121,11 @@ exports.roomByID = function (req, res, next, id) {
     });
 };
 
+/**
+ * Change a picture of the room
+ * @param req {Request}
+ * @param res {Response}
+ */
 exports.changePicture = function (req, res) {
     var upload = multer(config.uploads.roomUpload).single('image');
     upload(req, res, function (uploadError) {

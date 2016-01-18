@@ -1,8 +1,14 @@
 'use strict';
+/**
+ * @module rooms/models/Floor
+ */
 
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+/**
+ * @property {int} number
+ * */
 var FloorSchema = new Schema({
     number: {
         type: Number,
