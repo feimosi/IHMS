@@ -41,7 +41,7 @@
     <div class="col-md-10">
       <div class="list-group">
         <div class="room" ng-repeat="room in (roomsList.filteredRooms = (roomsList.rooms | roomsFilter:roomsList.filters))">
-          <div class="list-group-item" ui-sref="rooms.view({roomId: room._id})">
+          <div class="list-group-item" ui-sref="rooms.list.view({roomId: room._id})">
             <div class="row">
               <div class="col-md-6">
                 <img ng-src="{{ room.imageURL }}" class="room-image">

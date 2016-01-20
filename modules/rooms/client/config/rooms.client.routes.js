@@ -20,7 +20,7 @@ angular.module('rooms').config(function ($stateProvider) {
                 $uibModal.open({
                     templateUrl: 'modules/rooms/client/views/room-create.client.view.html'
                 }).result.then(function (result) {
-                    $state.go('rooms.view', {
+                    $state.go('rooms.list.view', {
                         roomId: result._id
                     });
                 }).catch(function () {
@@ -28,9 +28,15 @@ angular.module('rooms').config(function ($stateProvider) {
                 });
             }
         })
-        .state('rooms.view', {
+        .state('rooms.list.view', {
             url: '/:roomId',
-            templateUrl: 'modules/rooms/client/views/room-details.client.view.html'
+            onEnter: function ($state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'modules/rooms/client/views/room-details.client.view.html'
+                }).result.finally(function () {
+                    $state.go('rooms.list');
+                });
+            }
         })
         .state('rooms.list.edit', {
             url: '/:roomId/edit',
@@ -46,7 +52,7 @@ angular.module('rooms').config(function ($stateProvider) {
                             reload: true
                         });
                     } else {
-                        $state.go('rooms.view', {
+                        $state.go('rooms.list.view', {
                             roomId: result._id
                         });
                     }
