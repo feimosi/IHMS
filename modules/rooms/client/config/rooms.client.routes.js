@@ -30,7 +30,7 @@ angular.module('rooms').config(function ($stateProvider) {
         })
         .state('rooms.view', {
             url: '/:roomId',
-            templateUrl: 'modules/rooms/client/views/room-view.client.view.html'
+            templateUrl: 'modules/rooms/client/views/room-details.client.view.html'
         })
         .state('rooms.list.edit', {
             url: '/:roomId/edit',

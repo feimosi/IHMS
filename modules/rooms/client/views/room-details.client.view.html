@@ -1,21 +1,21 @@
-<section ng-controller="RoomViewController as roomView">
+<section ng-controller="RoomDetailsController as roomDetails">
   <div class="page-header text-center">
-    <h1>Room #<span ng-bind="roomView.room.number"></span></h1>
+    <h1>Room #<span ng-bind="roomDetails.room.number"></span></h1>
     <ul class="list-group">
       <li class="list-group-item">
         <p class="row" class="room-floor">
           <span class="col-md-6" >Floor: </span>
-          <span class="col-md-6" ng-bind="roomView.room.floor.number"></span>
+          <span class="col-md-6" ng-bind="roomDetails.room.floor.number"></span>
         </p>
       </li>
-      <li class="list-group-item" ng-repeat="feature in roomView.room.features">
+      <li class="list-group-item" ng-repeat="feature in roomDetails.room.features">
         <p class="row feature-{{ feature.type.name }}" >
           <span class="col-md-6" ng-bind="feature.type.name + ':'"></span>
           <span class="col-md-6" ng-bind="feature.value"></span>
         </p>
       </li>
     </ul>
-    <img ng-src="{{ roomView.room.imageURL }}" class="img-thumbnail room-image-thumb"
-      ng-if="roomView.room.imageURL">
+    <img ng-src="{{ roomDetails.room.imageURL }}" class="img-thumbnail room-image-thumb"
+      ng-if="roomDetails.room.imageURL">
   </div>
 </section>
