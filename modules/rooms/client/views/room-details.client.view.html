@@ -1,0 +1,38 @@
+<section ng-controller="RoomDetailsController as roomDetails">
+  <div class="modal-header text-center">
+    <h1>Room #<span ng-bind="roomDetails.room.number"></span></h1>
+  </div>
+
+  <div class="modal-body row">
+    <div class="col-md-6">
+      <img class="img-thumbnail room-image-thumb"
+           ng-src="{{ roomDetails.room.imageURL }}"
+           ng-if="roomDetails.room.imageURL">
+    </div>
+    <div class="col-md-6">
+      <ul class="list-group">
+        <li class="list-group-item">
+          <p class="row">
+            <span class="col-md-6" >Floor: </span>
+            <span class="col-md-6"
+                  ng-bind="roomDetails.room.floor.number"></span>
+          </p>
+        </li>
+        <li class="list-group-item"
+            ng-repeat="feature in roomDetails.room.features">
+          <p class="row feature-{{ feature.type.name }}" >
+            <span class="col-md-6" ng-bind="feature.type.name + ':'"></span>
+            <span class="col-md-6" ng-bind="feature.value"></span>
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <div class="form-group text-center">
+      <button type="button" class="btn btn-success"
+              ng-click="roomDetails.close()">Close</button>
+    </div>
+  </div>
+</section>
