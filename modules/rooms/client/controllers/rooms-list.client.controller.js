@@ -20,5 +20,15 @@ angular.module('rooms').controller('RoomsListController', function ($scope, $sta
         return item !== null;
     };
 
+    vm.clearFilters = function () {
+        vm.filters.roomNumber = '';
+        vm.filters.floorNumber = '';
+        Object.keys(vm.filters.features).forEach(function (featureTypeKey) {
+            Object.keys(vm.filters.features[featureTypeKey]).forEach(function (featureKey) {
+                vm.filters.features[featureTypeKey][featureKey] = false;
+            });
+        });
+    };
+
     vm.updateRoomsList();
 });
