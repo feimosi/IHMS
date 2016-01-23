@@ -4,7 +4,9 @@
   </div>
   <div class="row">
     <div class="col-md-2">
-      <button class="btn btn-success add-room-btn" ui-sref="rooms.list.create">Add room</button>
+      <button class="btn btn-success add-room-btn" ui-sref="rooms.list.create">
+        Add room
+      </button>
       <aside>
         <div class="panel panel-info filters-panel">
           <div class="panel-heading">
@@ -17,17 +19,20 @@
                 <input type="text" name="room-number" id="room-number" class="form-control"
                        ng-model="roomsList.filters.roomNumber">
               </div>
+
               <div class="form-group">
                 <label class="filter-name" for="floor-number">Floor number:</label>
                 <input type="text" name="room-number" id="floor-number" class="form-control"
                        ng-model="roomsList.filters.floorNumber">
               </div>
+
               <div class="form-group" ng-repeat="roomFeatureType in roomsList.roomFeatureTypes">
                 <label class="filter-name" ng-bind="roomFeatureType.name"></label>
                 <div>
                   <div ng-repeat="value in roomFeatureType.values | filter:roomsList.isNotNull">
-                    <label for="{{ value }}">
-                      <input type="checkbox" id="{{ value }}" value="{{ value }}">
+                    <input type="checkbox" id="{{ roomFeatureType.name + '_' + value }}" value="{{ value }}"
+                           ng-model="roomsList.filters.features[roomFeatureType._id][value]">
+                    <label for="{{ roomFeatureType.name + '_' + value }}">
                       <span ng-bind="value" ></span>
                     </label>
                   </div>
@@ -47,14 +52,18 @@
     </div>
     <div class="col-md-10">
       <div class="list-group">
-        <div class="room" ng-repeat="room in (roomsList.filteredRooms = (roomsList.rooms | roomsFilter:roomsList.filters))">
+        <div class="room"
+             ng-repeat="room in (roomsList.filteredRooms = (roomsList.rooms | roomsFilter:roomsList.filters))">
           <div class="list-group-item" ui-sref="rooms.list.view({roomId: room._id})">
             <div class="row">
               <div class="col-md-6">
                 <img ng-src="{{ room.imageURL }}" class="room-image">
               </div>
+
               <div class="col-md-6">
-                <h4 class="list-group-item-heading">Room #<span ng-bind="room.number"></span></h4>
+                <h4 class="list-group-item-heading">
+                  Room #<span ng-bind="room.number"></span>
+                </h4>
                 <div class="feature">
                   <strong class="list-group-item-text">Floor: </strong>
                   <span ng-bind="room.floor.number"></span>
@@ -63,11 +72,15 @@
                   <strong ng-bind="feature.type.name"></strong>
                   <span ng-bind="feature.value"></span>
                 </div>
-                <button class="btn btn-primary edit-room-btn" ng-click="roomsList.openEditView($event, room)">Edit</button>
+                <button class="btn btn-primary edit-room-btn"
+                        ng-click="roomsList.openEditView($event, room)">
+                  Edit
+                </button>
               </div>
             </div>
           </div>
         </div>
+
         <div class="no-rooms-info" ng-if="roomsList.rooms.$resolved && !roomsList.filteredRooms.length">
           <div class="alert alert-warning" role="alert">Warning! No rooms have been found. Please review your filters</div>
         </div>
