@@ -18,6 +18,7 @@
     "start": "gulp",
     "test": "gulp test",
     "docs": "jsdoc --configure .jsdoc.json --verbose",
+    "metrics": "plato -r -d report modules",
     "postinstall": "bower install --config.interactive=false"
   },
   "dependencies": {

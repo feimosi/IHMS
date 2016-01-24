@@ -27,6 +27,7 @@ config/env/local.js
 # Ignoring MEAN.JS's gh-pages branch for documenation
 _site/
 docs/
+report/
 
 # General
 # =======
