@@ -1,0 +1,52 @@
+<section ng-controller="ReservationConfirmController as reservationConfirm">
+  <div class="modal-header text-center">
+    <h1>Confirm reservation</h1>
+  </div>
+
+  <div class="modal-body reservation-confirm">
+    <p class="notice">
+      Please check carefully whether all the data below is correct and confirm you reservation.
+    </p>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4 features">
+        <div class="feature-size">
+          <strong>Size</strong>
+          <span ng-bind="reservationConfirm.room.features.Size"></span>m²
+        </div>
+
+        <div class="feature-beds">
+          <strong>Beds</strong>
+          <span ng-bind="reservationConfirm.room.features.Beds"></span>
+        </div>
+
+        <div class="feature-view">
+          <strong>View</strong>
+          <span ng-bind="reservationConfirm.room.features.View"></span>
+        </div>
+
+        <div class="feature-price text-center">
+          <p>Total cost:
+            <strong ng-bind="reservationConfirm.room.features.Price"></strong>
+            <strong ng-bind="reservationConfirm.currency"></strong>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <div class="form-group text-center">
+      <button type="button" class="btn btn-success"
+              ng-click="reservationConfirm.confirm()"
+              ng-disabled="reservationConfirm.personalDataForm.$invalid">
+        Confirm
+      </button>
+      <button type="button" class="btn btn-danger"
+              ng-click="reservationConfirm.dismiss()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</section>

@@ -23,7 +23,7 @@
 }
 
 .reservations-list .room-content .row {
-    height: 220px;
+    height: 240px;
 }
 
 .reservations-list .features {
@@ -41,6 +41,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    padding-left: 15px;
 }
 
 .reservations-list .room-description {
@@ -49,4 +50,16 @@
 
 .book-now-button {
   padding-top: 15px;;
+}
+
+.reservation-confirm {
+    .notice {
+        font-size: 1.2em;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .feature-price {
+        padding-top: 1em;
+    }
 }
