@@ -10,6 +10,12 @@ var RoomFeatureTypeSchema = new Schema({
     },
     description: {
         type: String
+    },
+    filterable: {
+        type: Boolean
+    },
+    important: {
+        type: Boolean
     }
 });
 

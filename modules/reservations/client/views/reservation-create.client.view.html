@@ -1,0 +1,70 @@
+<section ng-controller="ReservationCreateController as reservationCreate">
+  <div class="modal-header text-center">
+    <h1>Personal data</h1>
+  </div>
+  <div class="modal-body reservation-create">
+    <form name="reservationCreate.personalDataForm">
+      <div class="form-group row" show-errors>
+        <label for="firstName" class="col-md-3">First name</label>
+        <div class="col-md-9">
+          <input type="text" name="firstName" id="firstName"
+                 class="form-control" required autofocus
+                 ng-model="reservationCreate.personalData.firstName">
+        </div>
+      </div>
+      <div class="form-group row" show-errors>
+        <label for="lastName" class="col-md-3">Last name</label>
+        <div class="col-md-9">
+          <input type="text" name="lastName" id="lastName"
+                 class="form-control"
+                 ng-model="reservationCreate.personalData.lastName">
+        </div>
+      </div>
+      <div class="form-group row" show-errors>
+        <label for="nationality" class="col-md-3">Nationality</label>
+        <div class="col-md-9">
+          <input type="text" name="nationality" id="nationality"
+                 class="form-control"
+                 ng-model="reservationCreate.personalData.nationality">
+        </div>
+      </div>
+      <div class="form-group row" show-errors>
+        <label for="idCardNumber" class="col-md-3">ID card number</label>
+        <div class="col-md-9">
+          <input type="text" name="idCardNumber" id="idCardNumber"
+                 class="form-control"
+                 ng-model="reservationCreate.personalData.idCardNumber">
+        </div>
+      </div>
+      <div class="form-group row" show-errors>
+        <label for="phone" class="col-md-3">Phone</label>
+        <div class="col-md-9">
+          <input type="tel" name="phone" id="phone"
+                 class="form-control"
+                 ng-model="reservationCreate.personalData.phone">
+        </div>
+      </div>
+      <div class="form-group row" show-errors>
+        <label for="email" class="col-md-3">E-mail</label>
+        <div class="col-md-9">
+          <input type="email" name="email" id="email"
+                 class="form-control"
+                 ng-model="reservationCreate.personalData.email">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="form-group text-center">
+      <button type="button" class="btn btn-success"
+              ng-click="reservationCreate.next()"
+              ng-disabled="reservationCreate.personalDataForm.$invalid">
+        Next
+      </button>
+      <button type="button" class="btn btn-danger"
+              ng-click="reservationCreate.dismiss()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</section>

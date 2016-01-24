@@ -1,0 +1,49 @@
+<section ng-controller="ReservationSummaryController as reservationSummary">
+  <div class="modal-header text-center">
+    <h1>Reservation summary</h1>
+  </div>
+
+  <div class="modal-body reservation-confirm">
+    <p class="notice">
+      Soon you'll receive details about your reservation to you email.
+    </p>
+    <div class="row">
+      <div class="col-md-6 text-cemtere">
+        <div class="feature-size">
+          <strong>Size</strong>
+          <span ng-bind="reservationSummary.room.features.Size"></span>m²
+        </div>
+
+        <div class="feature-beds">
+          <strong>Beds</strong>
+          <span ng-bind="reservationSummary.room.features.Beds"></span>
+        </div>
+
+        <div class="feature-view">
+          <strong>View</strong>
+          <span ng-bind="reservationSummary.room.features.View"></span>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+
+      </div>
+      <div class="feature-price text-center">
+        <p>Total cost:
+          <strong ng-bind="reservationSummary.room.features.Price"></strong>
+          <strong ng-bind="reservationSummary.currency"></strong>
+        </p>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <div class="form-group text-center">
+      <button type="button" class="btn btn-success"
+              ng-click="reservationSummary.close()">
+        Close
+      </button>
+    </div>
+  </div>
+</section>
