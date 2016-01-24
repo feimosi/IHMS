@@ -2,7 +2,6 @@
 
 angular.module('reservations').controller('ReservationCreateController', function ($scope, $state, $stateParams) {
     var vm = this;
-    console.log($stateParams);
     vm.personalData = {};
 
     vm.next = function () {
