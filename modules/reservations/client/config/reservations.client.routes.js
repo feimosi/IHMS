@@ -42,8 +42,25 @@ angular.module('reservations').config(function ($stateProvider) {
                 $uibModal.open({
                     templateUrl: 'modules/reservations/client/views/reservation-confirm.client.view.html'
                 }).result.then(function () {
-                    $state.go('reservations.list.view');
+
                 }).catch(function () {
+                    $state.go('reservations.list');
+                });
+            }
+        })
+        .state('reservations.list.summary', {
+            url: '/confirm',
+            data: {
+                roles: ['user', 'admin']
+            },
+            params: {
+                room: null,
+                personalData: null
+            },
+            onEnter: function ($document, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'modules/reservations/client/views/reservation-summary.client.view.html'
+                }).result.finally(function () {
                     $state.go('reservations.list');
                 });
             }
