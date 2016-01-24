@@ -2,6 +2,7 @@
     width: 98%;
     margin: .5% 1%;
     font-size: 1.2em;
+    cursor: initial;
 }
 
 .reservations-list .room h2 {
@@ -50,6 +51,12 @@
 
 .book-now-button {
   padding-top: 15px;;
+}
+
+.reservation-create {
+    label {
+        font-size: 1.2em;
+    }
 }
 
 .reservation-confirm {
