@@ -11,10 +11,6 @@ angular.module('rooms').controller('RoomDetailsController', function ($scope, $s
         });
     });
 
-    vm.exceptDetails = function (feature, index) {
-        return feature.type.name !== 'Description';
-    }
-
     vm.close = function () {
         $scope.$close();
     };
