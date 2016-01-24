@@ -19,13 +19,18 @@
           </p>
         </li>
         <li class="list-group-item"
-            ng-repeat="feature in roomDetails.room.features">
+            ng-repeat="feature in roomDetails.room.features | filter:roomDetails.exceptDetails">
           <p class="row feature-{{ feature.type.name }}" >
             <span class="col-md-6" ng-bind="feature.type.name + ':'"></span>
             <span class="col-md-6" ng-bind="feature.value"></span>
           </p>
         </li>
       </ul>
+    </div>
+  </div>
+  <div class="list-group">
+    <div class="list-group-item">
+      <p ng-bind="roomDetails.room.description"></p>
     </div>
   </div>
 
