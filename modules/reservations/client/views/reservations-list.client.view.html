@@ -1,0 +1,52 @@
+<section class="reservations-list" ng-controller="ReservationsListController as reservationsList">
+  <div class="page-header">
+    <h1>Make a reservation</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+      <div class="room"
+           ng-repeat="room in reservationsList.rooms">
+        <div class="list-group-item room-content">
+          <div class="row">
+            <div class="col-md-4 image-container">
+              <img ng-src="{{ room.imageURL }}">
+            </div>
+
+            <div class="col-md-5 room-description">
+              <h2 ng-bind="room.features.Type"></h2>
+              <p ng-bind="room.features.Description"></p>
+            </div>
+
+            <div class="col-md-3 features">
+              <div class="feature-size">
+                <strong>Size</strong>
+                <span ng-bind="room.features.Size"></span>m²
+              </div>
+              <div class="feature-beds">
+                <strong>Beds</strong>
+                <span ng-bind="room.features.Beds"></span>
+              </div>
+              <div class="feature-view">
+                <strong>View</strong>
+                <span ng-bind="room.features.View"></span>
+              </div>
+
+              <div class="feature-price text-center">
+                <p>Rate including tax:</p>
+                <strong ng-bind="room.features.Price"></strong>
+                <strong ng-bind="reservationsList.currency"></strong>
+              </div>
+
+              <div class="text-center book-now-button">
+                <button class="btn btn-primary">
+                  Book now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
