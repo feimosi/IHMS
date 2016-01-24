@@ -1,0 +1,28 @@
+<section ng-controller="ReservationCreateController as reservationCreate">
+  <div class="modal-header text-center">
+    <h1>Personal data</h1>
+  </div>
+  <div class="modal-body">
+    <form name="reservationCreate.personalDataForm">
+      <div class="form-group" show-errors>
+        <label for="firstName">First name</label>
+        <input type="text" name="firstName" id="firstName"
+               class="form-control" required autofocus
+               ng-model="reservationCreate.personalData.firstName">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="form-group text-center">
+      <button type="button" class="btn btn-success"
+              ng-click="reservationCreate.next()"
+              ng-disabled="reservationCreate.personalDataForm.$invalid">
+        Next
+      </button>
+      <button type="button" class="btn btn-danger"
+              ng-click="reservationCreate.dismiss()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</section>
