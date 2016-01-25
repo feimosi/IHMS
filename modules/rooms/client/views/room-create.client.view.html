@@ -51,7 +51,8 @@
   </div>
   <div class="modal-footer">
     <div class="form-group text-center">
-      <button type="button" class="btn btn-success" ng-click="roomCreate.create()"
+      <button type="button" class="btn btn-success" id="create-room-btn"
+              ng-click="roomCreate.create()"
               ng-disabled="roomCreate.roomForm.$invalid">Create</button>
       <button type="button" class="btn btn-danger" ng-click="roomCreate.dismiss()">Cancel</button>
     </div>

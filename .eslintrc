@@ -7,7 +7,11 @@
   "globals": {
     "inject": true,
     "sinon": true,
-    "ApplicationConfiguration": true
+    "ApplicationConfiguration": true,
+    "element": true,
+    "by": true,
+    "browser": true,
+    "protractor": true
   },
   "extends": [
     "angular",

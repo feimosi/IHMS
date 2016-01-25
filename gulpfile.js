@@ -225,6 +225,9 @@ gulp.task('dropdb', function (done) {
       }
       db.connection.db.close(done);
     });
+    db.connection.collection('floors').insert({
+        number: 1
+    });
   });
 });
 
@@ -277,7 +280,7 @@ gulp.task('test:client', function (done) {
 });
 
 gulp.task('test:e2e', function (done) {
-  runSequence('env:test', 'lint', 'dropdb', 'nodemon', 'protractor', done);
+  runSequence('env:test', 'dropdb', 'nodemon', 'protractor', done);
 });
 
 // Run the project in development mode
