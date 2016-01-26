@@ -3,7 +3,59 @@
     <h1>Make a reservation</h1>
   </div>
   <div class="row">
-    <div class="col-md-2"></div>
+    <div class="col-md-2">
+      <aside>
+        <div class="panel panel-info filters-panel">
+          <div class="panel-heading">
+            <h3 class="panel-title">Choose filters</h3>
+          </div>
+          <div class="panel-body">
+            <form>
+              <div class="form-group">
+                <label class="filter-name">Number of beds:</label>
+                <div ng-repeat="value in reservationsList.roomFeatureTypes['Beds'].values">
+                  <input type="checkbox" id="{{ 'Beds_' + value }}" value="{{ 'Beds_' + value }}"
+                         ng-model="reservationsList.filters.features['Beds'][value]">
+                  <label for="{{ 'Beds_' + value }}">
+                    <span ng-bind="value" ></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="filter-name">Type:</label>
+                <div ng-repeat="value in reservationsList.roomFeatureTypes['Type'].values">
+                  <input type="checkbox" id="{{ 'Type_' + value }}" value="{{ 'Type_' + value }}"
+                         ng-model="reservationsList.filters.features['Type'][value]">
+                  <label for="{{ 'Type_' + value }}">
+                    <span ng-bind="value" ></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="filter-name">View:</label>
+                <div ng-repeat="value in reservationsList.roomFeatureTypes['View'].values">
+                  <input type="checkbox" id="{{ 'View_' + value }}" value="{{ 'View_' + value }}"
+                         ng-model="reservationsList.filters.features['View'][value]">
+                  <label for="{{ 'View_' + value }}">
+                    <span ng-bind="value" ></span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="text-center">
+                <button type="button" class="btn btn-default"
+                        ng-click="reservationsList.clearFilters()">
+                  Clear all
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </aside>
+    </div>
+
     <div class="col-md-10">
       <div class="room"
            ng-repeat="room in reservationsList.rooms">
