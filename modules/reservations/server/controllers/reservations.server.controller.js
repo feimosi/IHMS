@@ -59,6 +59,19 @@ exports.list = function (req, res) {
     });
 };
 
+exports.readByUserId = function (req, res) {
+    Reservation.find({
+        user: req.params.userId
+    }).exec(function (err, reservations) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        }
+        res.json(reservations);
+    });
+};
+
 exports.reservationById = function (req, res, next, id) {
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).send({

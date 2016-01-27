@@ -11,5 +11,8 @@ module.exports = function (app) {
     app.route('/api/reservations/:reservationId').all(reservationsPolicy.isAllowed)
         .get(reservations.read);
 
+    app.route('/api/reservations/user/:userId')
+        .get(reservations.readByUserId);
+
     app.param('reservationId', reservations.reservationById);
 };

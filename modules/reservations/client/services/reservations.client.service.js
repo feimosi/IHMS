@@ -6,6 +6,11 @@ angular.module('reservations').factory('Reservations', function ($resource) {
     }, {
         update: {
             method: 'PUT'
+        },
+        getByUser: {
+            method: 'GET',
+            url: 'api/reservations/user/:userId',
+            isArray: true
         }
     });
 });
