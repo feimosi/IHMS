@@ -1,0 +1,23 @@
+<section class="reservations-my" ng-controller="MyReservationsController as myReservations">
+  <div class="page-header">
+    <h1>My reservations</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <ul>
+        <li ng-repeat="reservation in myReservations.reservations">
+          From
+          <time datetime="{{ reservation.startDate }}"
+                ng-bind="reservation.startDate | date:'dd.MM.yyyy'">
+          </time>
+          to
+          <time datetime="{{ reservation.endDate }}"
+                ng-bind="reservation.endDate | date:'dd.MM.yyyy'">
+          </time>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</section>

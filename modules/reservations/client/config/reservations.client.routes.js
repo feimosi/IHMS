@@ -64,5 +64,9 @@ angular.module('reservations').config(function ($stateProvider) {
                     $state.go('reservations.list');
                 });
             }
+        })
+        .state('reservations.my', {
+            url: '/my',
+            templateUrl: 'modules/reservations/client/views/reservations-my.client.view.html'
         });
 });
