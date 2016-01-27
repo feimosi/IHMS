@@ -3,6 +3,7 @@
 angular.module('rooms').controller('RoomCreateController', function ($scope, $state, $window, $timeout,
                                                                      Rooms, Floors, RoomFeatureTypes, FileUploader,
                                                                      Notification) {
+    var DUPLICATE_NUMBER_ERRORCODE = 11000;
     var vm = this;
     vm.room = {};
     vm.availableFeatures = RoomFeatureTypes.query();
@@ -79,7 +80,11 @@ angular.module('rooms').controller('RoomCreateController', function ($scope, $st
                 Notification.success('Success! New room has been added.');
             }
         }, function (errorResponse) {
-            vm.error = errorResponse.data.message;
+            if (errorResponse.data.message.includes(DUPLICATE_NUMBER_ERRORCODE)) {
+                Notification.error('Room with given number already exists!');
+            } else {
+                vm.error = errorResponse.data.message;
+            }
         });
     };
 

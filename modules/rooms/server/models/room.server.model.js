@@ -17,6 +17,7 @@ var mongoose = require('mongoose'),
 var RoomSchema = new Schema({
     number: {
         type: Number,
+        unique: true,
         required: 'The room needs to have a number'
     },
     available: {
