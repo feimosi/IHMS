@@ -129,7 +129,14 @@
               </div>
 
               <div class="text-center book-now-button">
-                <button class="btn btn-primary" ui-sref="reservations.list.create({ room: room })">
+                <button class="btn btn-primary"
+                        ui-sref="reservations.list.create({
+                          reservation: {
+                            room: room,
+                            startDate: reservationsList.dateStart,
+                            endDate: reservationsList.dateEnd
+                          }
+                        })">
                   Book now
                 </button>
               </div>

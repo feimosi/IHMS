@@ -17,7 +17,7 @@ angular.module('reservations').config(function ($stateProvider) {
                 roles: ['user', 'admin']
             },
             params: {
-                room: null
+                reservation: null
             },
             onEnter: function ($document, $state, $uibModal) {
                 $uibModal.open({
@@ -35,7 +35,7 @@ angular.module('reservations').config(function ($stateProvider) {
                 roles: ['user', 'admin']
             },
             params: {
-                room: null,
+                reservation: null,
                 personalData: null
             },
             onEnter: function ($document, $state, $uibModal) {
@@ -54,7 +54,7 @@ angular.module('reservations').config(function ($stateProvider) {
                 roles: ['user', 'admin']
             },
             params: {
-                room: null,
+                reservation: null,
                 personalData: null
             },
             onEnter: function ($document, $state, $uibModal) {

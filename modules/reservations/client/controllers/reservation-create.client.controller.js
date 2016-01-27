@@ -6,7 +6,7 @@ angular.module('reservations').controller('ReservationCreateController', functio
 
     vm.next = function () {
         $state.go('reservations.list.confirm', {
-            room: $stateParams.room,
+            reservation: $stateParams.reservation,
             personalData: vm.personalData
         });
         $scope.$close();
