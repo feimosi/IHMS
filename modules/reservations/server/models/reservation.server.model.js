@@ -16,6 +16,7 @@ var ReservationSchema = new Schema({
     },
     submitDate: {
         type: Date,
+        unique: false,
         default: Date.now()
     },
     startDate: {
