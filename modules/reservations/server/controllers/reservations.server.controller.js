@@ -72,6 +72,39 @@ exports.readByUserId = function (req, res) {
     });
 };
 
+exports.readDateRange = function (req, res) {
+    Reservation.find({
+        $or: [{
+            $and: [{
+                startDate: {
+                    $gte: new Date(req.params.startDate)
+                }
+            }, {
+                startDate: {
+                    $lte: new Date(req.params.endDate)
+                }
+            }]
+        }, {
+            $and: [{
+                endDate: {
+                    $lte: new Date(req.params.endDate)
+                }
+            }, {
+                endDate: {
+                    $gte: new Date(req.params.startDate)
+                }
+            }]
+        }]
+    }).exec(function (err, reservations) {
+        if (err) {
+            return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+        }
+        res.json(reservations);
+    });
+};
+
 exports.reservationById = function (req, res, next, id) {
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).send({

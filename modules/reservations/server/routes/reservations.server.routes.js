@@ -14,5 +14,8 @@ module.exports = function (app) {
     app.route('/api/reservations/user/:userId')
         .get(reservations.readByUserId);
 
+    app.route('/api/reservations/between/:startDate/and/:endDate')
+        .get(reservations.readDateRange);
+
     app.param('reservationId', reservations.reservationById);
 };

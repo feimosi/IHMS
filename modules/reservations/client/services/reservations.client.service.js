@@ -11,6 +11,11 @@ angular.module('reservations').factory('Reservations', function ($resource) {
             method: 'GET',
             url: 'api/reservations/user/:userId',
             isArray: true
+        },
+        getByDateRange: {
+            method: 'GET',
+            url: '/api/reservations/between/:startDate/and/:endDate',
+            isArray: true
         }
     });
 });
