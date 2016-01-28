@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('reservations').controller('ReservationsListController', function ($scope, Rooms, RoomFeatureTypes) {
+angular.module('reservations').controller('ReservationsListController', function ($scope, Rooms, RoomFeatureTypes,
+                                                                                  Reservations) {
     var vm = this;
     vm.currency = 'EUR';
     vm.filters = {};
@@ -11,9 +12,9 @@ angular.module('reservations').controller('ReservationsListController', function
     };
     vm.datepickerStartOpened = false;
     vm.datepickerEndOpened = false;
-    vm.dateStart = Date.now();
+    vm.dateStart = new Date(Date.now());
     vm.dateEnd = null;
-    vm.minStartDate = Date.now();
+    vm.minStartDate = new Date(Date.now());
     vm.minEndDate = null;
     vm.rooms = Rooms.query(function () {
         // Convert features array to a map
@@ -24,6 +25,7 @@ angular.module('reservations').controller('ReservationsListController', function
             }, {});
         });
     });
+    vm.availableRooms = vm.rooms;
     vm.roomFeatureTypes = RoomFeatureTypes.query(function () {
         // Convert features array to a map
         vm.roomFeatureTypes = vm.roomFeatureTypes.reduce(function (obj, feature) {
@@ -31,6 +33,26 @@ angular.module('reservations').controller('ReservationsListController', function
             return obj;
         }, {});
     });
+
+    function filterRooms(rooms, reservations) {
+        var takenRoomIds = reservations.map(function (reservation) {
+            return reservation.room;
+        });
+        return rooms.filter(function (room) {
+            return takenRoomIds.indexOf(room._id) < 0;
+        });
+    }
+
+    function updateAvailableRooms() {
+        if (vm.dateStart !== null && vm.dateEnd !== null) {
+            var availableReservations = Reservations.getByDateRange({
+                startDate: vm.dateStart.toISOString(),
+                endDate: vm.dateEnd.toISOString()
+            }, function () {
+                vm.availableRooms = filterRooms(vm.rooms, availableReservations);
+            });
+        }
+    }
 
     vm.openDatepickerStart = function openDatepickerStart() {
         vm.datepickerStartOpened = true;
@@ -47,6 +69,20 @@ angular.module('reservations').controller('ReservationsListController', function
             var dateStart = new Date(vm.dateStart);
             dateStart.setDate(dateStart.getDate() + 1);
             vm.minEndDate = dateStart;
+
+            if (vm.dateEnd !== null) {
+                var availableReservations = Reservations.getByDateRange({
+                    startDate: vm.dateStart.toISOString(),
+                    endDate: vm.dateEnd.toISOString()
+                }, function () {
+                    vm.availableRooms = filterRooms(vm.rooms, availableReservations);
+                });
+            }
         }
+        updateAvailableRooms();
     });
+
+    $scope.$watch(function () {
+        return vm.dateEnd;
+    }, updateAvailableRooms);
 });
